@@ -1,0 +1,168 @@
+diff --git a/config/database.php b/config/database.php
+index f8e8dcb..5278f4f 100644
+--- a/config/database.php
++++ b/config/database.php
+@@ -46,7 +46,7 @@
+             'port' => env('DB_PORT', '3306'),
+             'database' => env('DB_DATABASE', 'laravel'),
+             'username' => env('DB_USERNAME', 'root'),
+-            'password' => env('DB_PASSWORD', ''),
++            'password' => env('DB_PASSWORD', 'root123'),
+             'unix_socket' => env('DB_SOCKET', ''),
+             'charset' => env('DB_CHARSET', 'utf8mb4'),
+             'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
+diff --git a/database/migrations/2024_06_27_075108_create_poctest_table.php b/database/migrations/2024_06_27_075108_create_poctest_table.php
+new file mode 100644
+index 0000000..885da59
+--- /dev/null
++++ b/database/migrations/2024_06_27_075108_create_poctest_table.php
+@@ -0,0 +1,29 @@
++<?php
++
++use Illuminate\Database\Migrations\Migration;
++use Illuminate\Database\Schema\Blueprint;
++use Illuminate\Support\Facades\Schema;
++
++return new class extends Migration
++{
++    /**
++     * Run the migrations.
++     */
++    public function up(): void
++    {
++        Schema::create('poctest', function (Blueprint $table) {
++            $table->id();
++            $table->string('name')->comment('ユーザー氏名');
++            $table->string('email')->comment('ユーザーメール');
++            $table->timestamps();
++        });
++    }
++
++    /**
++     * Reverse the migrations.
++     */
++    public function down(): void
++    {
++        Schema::dropIfExists('poctest');
++    }
++};
+diff --git a/database/migrations/2024_06_27_084816_create_poctest01_table.php b/database/migrations/2024_06_27_084816_create_poctest01_table.php
+new file mode 100644
+index 0000000..4da537a
+--- /dev/null
++++ b/database/migrations/2024_06_27_084816_create_poctest01_table.php
+@@ -0,0 +1,29 @@
++<?php
++
++use Illuminate\Database\Migrations\Migration;
++use Illuminate\Database\Schema\Blueprint;
++use Illuminate\Support\Facades\Schema;
++
++return new class extends Migration
++{
++    /**
++     * Run the migrations.
++     */
++    public function up(): void
++    {
++        Schema::create('poctest01', function (Blueprint $table) {
++            $table->id();
++            $table->string('username')->comment('ユーザーネーム');
++            $table->string('email')->comment('メールアドレス');
++            $table->timestamps();
++        });
++    }
++
++    /**
++     * Reverse the migrations.
++     */
++    public function down(): void
++    {
++        Schema::dropIfExists('poctest01');
++    }
++};
+diff --git a/database/migrations/2024_07_01_093459.txt b/database/migrations/2024_07_01_093459.txt
+new file mode 100644
+index 0000000..e843d49
+--- /dev/null
++++ b/database/migrations/2024_07_01_093459.txt
+@@ -0,0 +1,38 @@
++PS D:\WorkSpace\xampp\htdocs\_poca> php -v
++PHP 8.2.4 (cli) (built: Mar 14 2023 17:54:25) (ZTS Visual C++ 2019 x64)
++Copyright (c) The PHP Group
++Zend Engine v4.2.4, Copyright (c) Zend Technologies
++PS D:\WorkSpace\xampp\htdocs\_poca> php artisan -V
++Laravel Framework 11.10.0
++PS D:\WorkSpace\xampp\htdocs\_poca> php artisan migrate:status
++
++  Migration name .................................................................... Batch / Status
++  0001_01_01_000000_create_users_table ..................................................... [1] Ran
++  0001_01_01_000001_create_cache_table ..................................................... [1] Ran
++  0001_01_01_000002_create_jobs_table ...................................................... [1] Ran
++  2024_06_27_075108_create_poctest_table ................................................... Pending
++  2024_06_27_084816_create_poctest01_table ................................................. [2] Ran
++PS D:\WorkSpace\xampp\htdocs\_poca>
++
++PS D:\WorkSpace\xampp\htdocs\_poca>
++PS D:\WorkSpace\xampp\htdocs\_poca> php artisan make:migration drop_poctest_table
++
++   INFO  Migration [D:\WorkSpace\xampp\htdocs\_poca\database\migrations/2024_07_01_093459_drop_poctest_table.php] created successfully.
++
++PS D:\WorkSpace\xampp\htdocs\_poca> php artisan migrate:status
++
++  Migration name ...................................... Batch / Status
++  0001_01_01_000000_create_users_table ....................... [1] Ran
++  0001_01_01_000001_create_cache_table ....................... [1] Ran
++  0001_01_01_000002_create_jobs_table ........................ [1] Ran
++  2024_06_27_075108_create_poctest_table ..................... Pending
++  2024_06_27_084816_create_poctest01_table ................... [2] Ran
++  2024_07_01_093459_drop_poctest_table ....................... Pending
++
++PS D:\WorkSpace\xampp\htdocs\_poca> php artisan migrate --path=/database/migrations/2024_07_01_093459_drop_poctest_table.php
++
++   INFO  Running migrations.
++
++  2024_07_01_093459_drop_poctest_table .................. 33.17ms DONE
++
++PS D:\WorkSpace\xampp\htdocs\_poca>
+\ No newline at end of file
+diff --git a/database/migrations/2024_07_01_093459_drop_poctest_table.php b/database/migrations/2024_07_01_093459_drop_poctest_table.php
+new file mode 100644
+index 0000000..ae053a4
+--- /dev/null
++++ b/database/migrations/2024_07_01_093459_drop_poctest_table.php
+@@ -0,0 +1,34 @@
++<?php
++
++use Illuminate\Database\Migrations\Migration;
++use Illuminate\Database\Schema\Blueprint;
++use Illuminate\Support\Facades\Schema;
++
++return new class extends Migration
++{
++    /**
++     * Run the migrations.
++     */
++    public function up(): void
++    {
++        //
++        Schema::dropIfExists('poctest');
++    }
++
++    /**
++     * Reverse the migrations.
++     */
++    public function down(): void
++    {
++        //
++        Schema::create('poctest', function (Blueprint $table) {
++            // $table->increments('id');
++            // $table->timestamps();
++
++            $table->id();
++            $table->string('name')->comment('ユーザー氏名');
++            $table->string('email')->comment('ユーザーメール');
++            $table->timestamps();
++        });
++    }
++};
