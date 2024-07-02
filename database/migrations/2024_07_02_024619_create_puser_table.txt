@@ -1,0 +1,15 @@
+PS D:\WorkSpace\xampp\htdocs\_poca> php artisan migrate:status
+
+  Migration name ...................................... Batch / Status
+  0001_01_01_000000_create_users_table ....................... [1] Ran
+  0001_01_01_000001_create_cache_table ....................... [1] Ran
+  0001_01_01_000002_create_jobs_table ........................ [1] Ran
+  2024_06_27_075108_create_poctest_table ..................... Pending
+  2024_06_27_084816_create_poctest01_table ................... [2] Ran
+  2024_07_01_093459_drop_poctest_table ....................... [3] Ran
+  2024_07_02_005038_drop_poctest01_table ..................... [4] Ran
+PS D:\WorkSpace\xampp\htdocs\_poca> php artisan make:migration create_puser_table
+
+   INFO  Migration [D:\WorkSpace\xampp\htdocs\_poca\database\migrations/2024_07_02_024619_create_puser_table.php] created successfully.
+
+PS D:\WorkSpace\xampp\htdocs\_poca>
