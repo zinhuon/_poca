@@ -19,7 +19,9 @@ class UserController extends Controller
         $users = DB::table('puser')
             ->leftJoin('pcontracts', 'puser.id', '=', 'pcontracts.user_id')
             ->select('puser.id', 'puser.name', 'pcontracts.status')
-            ->where('pcontracts.status', '=', '未契約')
+            // ->where('pcontracts.status', '=', '未契約')
+            // ->groupBy('puser.id')
+            ->groupBy('puser.id', 'puser.name', 'pcontracts.status')
             ->get();
 
         return view('users.index', compact('users'));
